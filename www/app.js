@@ -1,72 +1,101 @@
-var fname = "kanokwan";
-var lname = 'kongpeng'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 
-var num1 = 123
-var num2 = 45.333
+// function calBMI(w, h) {
+//     let bmi = w / (h * h)
+//     return bmi
+// }
 
-var arr = ["kanokwan", "kongpeng", 123, 45.333, true,]
+// function classBMI(numBmi) {
+//     if (numBmi < 18.5) {
+//         return "กินเยอะๆน้า"
+//     } else if (numBmi < 22.9) {
+//         return "หุ่นดีมั่ก"
+//     } else if (numBmi < 24.9) {
+//         return "พออิ่มค่ะ"
+//     } else if (numBmi < 29.9) {
+//         return "กินแซ่บเนอะ"
+//     } else {
+//         return "เปงหมี"
+//     }
+// }
 
-var bol = true
-if (bol) {
-    //  console.log("yes");
-}
-// window.alert("fname")
-// console.log(arr[0] + " " + arr[1]);
-// document.getElementById("divname").innerHTML = fname + ' ' + lname;
-// console.log(fname + ' ' + lname);
-// console.log(num1 + num2);
-// console.log(fname + num1);
+class BMI {
+    constructor(weight, height) {
+        this.w = weight
+        this.h = height
+    }
 
-var arr = ["kanokwan", "kongpeng", 16, true]
-console.log("arr:", arr[0])
+    calBMI() {
+        let bmi = this.w / (this.h * this.h)
+        return bmi
+    }
 
-var stdOdj = {
-    fname: "kanokwan",
-    lname: "kongpeng",
-    id: 1234567898
-}
-console.log(stdOdj.fname)
-
-const x = "kanokwan"
-console.log(x)
-
-function showName(name) {
-    console.log("hay" + name)
-}
-showName("kanokwan")
-
-function addNumber() {
-    let result = 1 + 1
-    return result
-}
-
-let res = addNumber(8)
-console.log(res)
-
-var addNumber2 = (num) => {
-    let result = 1 + num
-    return result
+    classBMI(numBmi) {
+        if (numBmi < 18.5) {
+            return "กินเยอะๆน้า"
+        } else if (numBmi < 22.9) {
+            return "หุ่นดีมั่ก"
+        } else if (numBmi < 24.9) {
+            return "พออิ่มค่ะ"
+        } else if (numBmi < 29.9) {
+            return "กินแซ่บเนอะ"
+        } else {
+            return "เปงหมี"
+        }
+    }
 }
 
-let res2 = addNumber2(5)
-console.log(res2)
+var btnBmi = document.getElementById("btnBmi")
 
-var score = 80
-if (score <= 50) {
-    console.log("F")
-} else if (score <= 70) {
-    console.log("B")
-}
-else {
-    console.log("A")
+btnBmi.addEventListener("click", () => {
+    console.log("Hey wellcome to my webpage BMI by Mildlove")
 
-}
+    var weight = document.getElementById("weight").value
+    var height = document.getElementById("height").value
 
-for (let i = 0; i < 10; i += 2) {
-    console.log(i)
-}
+    if (height > 3) {
+        alert("โปรดกรอกความสูงเป็นหน่วยเมตร เช่น 1.75")
+    } else {
+        // let num_bmi = calBMI(weight, height)
+        // let txt_bmi = classBMI(num_bmi)
 
-var arr2 = ["kanokwan", "kongpeng", 123, 45.333, true,]
-arr2.forEach((x) => { console.log(x) })
+        let bmi = new BMI(weight, height)
+        let num_bmi = bmi.calBMI()
+        let txt_bmi = bmi.classBMI(num_bmi)
 
-arr2.forEach(function (x) { console.log(x) })
+        console.log("น้ำหนัก : " + weight + " กิโลกรัม")
+        console.log("ส่วนสูง : " + height + " เมตร")
+        console.log(num_bmi)
+        console.log(txt_bmi)
+    }
+
+    // if we reached here, create BMI and render results
+    let bmiObj = new BMI(weight, height)
+    let num_bmi = bmiObj.calBMI()
+    let txt_bmi = bmiObj.classBMI(num_bmi)
+
+    if (num_bmi < 18.5) {
+        document.getElementById('txtBmi').innerHTML = '<h1 class="badge text-bg-success" >' + txt_bmi + '</h1>'
+        document.getElementById('numBmi').innerHTML = '<h1 class="badge text-bg-success" > BMI : ' + num_bmi.toFixed(2) + '</h1>'
+        document.getElementById('pigBmi').innerHTML = '<img src="./cat1.jpg" style ="max-width:250px">'
+
+    } else if (num_bmi < 22.9) {
+        document.getElementById('txtBmi').innerHTML = '<h1 class="badge text-bg-danger" >' + txt_bmi + '</h1>'
+        document.getElementById('numBmi').innerHTML = '<h1 class="badge text-bg-danger" > BMI : ' + num_bmi.toFixed(2) + '</h1>'
+        document.getElementById('pigBmi').innerHTML = '<img src="./cat2.jpg" style ="max-width:250px">'
+    } else if (num_bmi < 24.9) {
+        document.getElementById('txtBmi').innerHTML = '<h1 class="badge text-bg-danger" >' + txt_bmi + '</h1>'
+        document.getElementById('numBmi').innerHTML = '<h1 class="badge text-bg-danger" > BMI : ' + num_bmi.toFixed(2) + '</h1>'
+        document.getElementById('pigBmi').innerHTML = '<img src="./cat3.jpg" style ="max-width:250px">'
+    } else if (num_bmi < 29.9) {
+        document.getElementById('txtBmi').innerHTML = '<h1 class="badge text-bg-danger" >' + txt_bmi + '</h1>'
+        document.getElementById('numBmi').innerHTML = '<h1 class="badge text-bg-danger" > BMI : ' + num_bmi.toFixed(2) + '</h1>'
+        document.getElementById('pigBmi').innerHTML = '<img src="./cat4.jpg" style ="max-width:250px">'
+    } else {
+        document.getElementById('txtBmi').innerHTML = '<h1 class="badge text-bg-danger" >' + txt_bmi + '</h1>'
+        document.getElementById('numBmi').innerHTML = '<h1 class="badge text-bg-danger" > BMI : ' + num_bmi.toFixed(2) + '</h1>'
+        document.getElementById('pigBmi').innerHTML = '<img src="./cat5.jpg" style ="max-width:250px">'
+    }
+
+}) 
